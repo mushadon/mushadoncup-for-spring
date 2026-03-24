@@ -14,27 +14,39 @@
     <meta property="og:image:height" content="630">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <style>
+   <style>
         body {
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            background-color: #1a1a2e;
-            color: #e0e0e0;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #2a2a2a; /* ロゴの背景に近いダークグレー */
+            color: #f0f0f0;
+            overflow-x: hidden;
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #4f46e5, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* 背景の装飾：雲のような和柄と光 */
+        .bg-ornament {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(236, 72, 153, 0.15) 0%, transparent 40%);
+            z-index: -1;
         }
         .card {
-            background-color: rgba(23, 23, 39, 0.8);
+            background: rgba(45, 45, 45, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
         }
-        .section-title {
-            border-left: 4px solid #ec4899;
-            padding-left: 1rem;
+        .gradient-text {
+            background: linear-gradient(90deg, #818cf8, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cost-badge {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -47,9 +59,12 @@
 
     <div class="container mx-auto px-4 py-12 relative z-10">
         
-        <header class="text-center mb-16">
-            <h1 class="text-5xl md:text-7xl font-black tracking-tight gradient-text mb-4">むしゃどん杯</h1>
-            <p class="text-lg text-gray-300">一夜限りのお楽しみ大会</p>
+     <header class="text-center mb-12">
+            <div class="inline-block mb-6 relative">
+                <img src="mushadon杯七大学.jpg" alt="むしゃどん杯ロゴ" class="w-48 md:w-64 mx-auto rounded-full shadow-2xl border-4 border-gray-700">
+            </div>
+            <h1 class="text-5xl md:text-6xl font-black tracking-tighter gradient-text mb-2">むしゃどん杯</h1>
+            <p class="text-gray-400 font-bold tracking-widest">一夜限りのブキコスト制コミュニティ大会</p>
         </header>
 
         <main class="space-y-12">
