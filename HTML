@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>むしゃどん杯 | ブキコスト制大会</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="むしゃどん杯 | ブキコスト制大会">
+    <meta property="og:description" content="独自のブキコスト制ルールを採用したスプラトゥーン3コミュニティ大会！4月4日開催。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #4f46e5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card {
+            background-color: rgba(23, 23, 39, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .section-title {
+            border-left: 4px solid #ec4899;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
+        <div class="absolute top-[-20%] left-[-10%] w-96 h-96 bg-indigo-600 rounded-full opacity-30 filter blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-96 h-96 bg-pink-600 rounded-full opacity-30 filter blur-3xl animate-pulse"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-12 relative z-10">
+        
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight gradient-text mb-4">むしゃどん杯</h1>
+            <p class="text-lg text-gray-300">一夜限りのブキコスト制コミュニティ大会</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="schedule" class="card rounded-2xl p-6 md:p-8 border-2 border-pink-500/50">
+                <h2 class="text-3xl font-bold mb-6 section-title">開催日時</h2>
+                <div class="text-center">
+                    <p class="text-4xl md:text-5xl font-black gradient-text">2026年4月4日（土）</p>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-2xl font-bold">
+                        <div class="bg-gray-800/50 p-4 rounded-lg">20:00 集合・顔合わせ</div>
+                        <div class="bg-indigo-900/30 p-4 rounded-lg text-indigo-300">21:00 試合開始</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="special-rules" class="card rounded-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 section-title">特殊ルール：コスト制</h2>
+                <div class="space-y-8">
+                    <div class="bg-gray-800/40 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold mb-4 text-pink-400">編成コスト制限</h3>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-start">
+                                <span class="bg-pink-600 text-white px-2 py-0.5 rounded text-sm mr-3 mt-1">18</span>
+                                <div><strong>基本編成：</strong> 合計コスト18以下（上位2人の合計が9以下）</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-indigo-600 text-white px-2 py-0.5 rounded text-sm mr-3 mt-1">22</span>
+                                <div><strong>強化編成：</strong> 合計コスト22以下（上位2人の合計が11以下）</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">試合の流れ（2本先取）</h3>
+                        <ol class="list-decimal list-inside space-y-3 text-gray-300 bg-gray-900/50 p-6 rounded-xl">
+                            <li><span class="font-bold">第1試合：</span> コスト18 vs 18</li>
+                            <li><span class="font-bold">第2試合：</span> 直前の試合の<span class="text-red-400 underline">敗北チーム</span>のみコスト22が解禁</li>
+                            <li><span class="font-bold">第3試合：</span> 1勝1敗の場合、両チームコスト22で決戦</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-2">ルール</h3>
+                    <p class="text-gray-300">ガチエリア（おまかせ）</p>
+                </div>
+                <div class="card rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-2">エントリー</h3>
+                    <p class="text-gray-300">個人エントリー<br><span class="text-sm text-gray-400">（運営によるチーム分け）</span></p>
+                </div>
+                <div class="card rounded-2xl p-6">
+                    <h3 class="text-xl font-bold mb-2">XP制限</h3>
+                    <p class="text-2xl font-black gradient-text">なし！</p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 text-gray-500 text-sm">
+            <p>&copy; 2026 Mushadon Cup. All rights reserved.</p>
+        </footer>
+        
+    </div>
+</body>
+</html>
