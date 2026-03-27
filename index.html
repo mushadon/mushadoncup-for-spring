@@ -181,34 +181,161 @@
             line-height: 1.8;
         }
 
-        @media (max-width: 768px) {
-            .bg-fixed {
-                background-position: center top;
-            }
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+        line-height: 1.7;
+    }
 
-            .header-bg {
-                padding: 16px;
-                border-radius: 12px;
-            }
+    .container {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        padding-top: 20px !important;
+        padding-bottom: 96px !important; /* 固定ボタンぶん余白 */
+    }
 
-            .footer-bg {
-                padding: 16px;
-                border-radius: 12px;
-                margin-left: 8px;
-                margin-right: 8px;
-            }
+    .bg-fixed {
+        background-position: center top;
+    }
 
-            .quick-nav {
-                justify-content: flex-start;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                padding-bottom: 4px;
-            }
+    .header-bg,
+    .footer-bg,
+    .card {
+        border-radius: 14px;
+    }
 
-            .quick-nav a {
-                white-space: nowrap;
-            }
-        }
+    .header-bg {
+        padding: 18px;
+    }
+
+    .footer-bg {
+        padding: 16px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* ヒーロー */
+    #top h1 {
+        font-size: 2.4rem !important;
+        line-height: 1.1;
+        margin-bottom: 12px;
+    }
+
+    #top p.text-lg,
+    #top p.text-2xl,
+    #top p.md\:text-2xl {
+        font-size: 1rem !important;
+        line-height: 1.7;
+    }
+
+    /* セクション見出し */
+    h2.text-3xl,
+    h2.md\:text-4xl,
+    .text-3xl.font-bold {
+        font-size: 1.6rem !important;
+        line-height: 1.3;
+    }
+
+    h3.text-2xl,
+    h3.text-xl,
+    .text-2xl.font-bold,
+    .text-xl.font-bold {
+        font-size: 1.15rem !important;
+        line-height: 1.5;
+    }
+
+    .section-kicker {
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+    }
+
+    /* ナビは2列グリッドに */
+    .quick-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        overflow: visible;
+        justify-content: stretch;
+    }
+
+    .quick-nav a {
+        white-space: normal;
+        text-align: center;
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+
+    /* ボタン */
+    .cta-wrap {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        width: 100%;
+        min-height: 46px;
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+
+    /* 既存グリッドを全部1カラム寄りに */
+    .grid,
+    .md\:grid-cols-2,
+    .md\:grid-cols-3,
+    .lg\:grid-cols-3 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* 日時の大文字を抑える */
+    #schedule .text-4xl,
+    #schedule .text-5xl,
+    #schedule .md\:text-5xl {
+        font-size: 2rem !important;
+        line-height: 1.2;
+    }
+
+    #schedule .text-2xl {
+        font-size: 1.05rem !important;
+    }
+
+    /* 画像の圧迫感を軽減 */
+    #special-rules img {
+        border-radius: 12px;
+    }
+
+    /* 要約・FAQ */
+    .summary-box,
+    .faq-item {
+        padding: 14px;
+    }
+
+    .faq-item summary {
+        line-height: 1.6;
+    }
+
+    /* リストを少し読みやすく */
+    ul, ol {
+        padding-left: 0.2rem;
+    }
+
+    li {
+        line-height: 1.75;
+    }
+
+    /* 固定エントリーボタン */
+    .floating-entry {
+        right: 12px;
+        left: 12px;
+        bottom: 12px;
+    }
+
+    .floating-entry a {
+        width: 100%;
+        min-height: 50px;
+        font-size: 0.95rem;
+    }
+}
         .floating-entry {
     position: fixed;
     right: 16px;
