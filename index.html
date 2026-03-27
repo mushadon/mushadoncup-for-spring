@@ -54,6 +54,13 @@
     background: url("mushadon杯七大学.jpg") center / cover no-repeat;
     z-index: -2;
 }
+       .header-bg {
+    background: rgba(0, 0, 0, 0.4); /* 半透明黒 */
+    backdrop-filter: blur(6px);     /* ぼかし（ガラス感） */
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 16px;
+    padding: 24px;
+}
     </style>
 </head>
 <body class="antialiased">
@@ -65,7 +72,7 @@
 
     <div class="container mx-auto px-4 py-12 relative z-10">
         
-     <header class="text-center mb-12">
+     <header class="text-center mb-12 header-bg">
             
             <h1 class="text-5xl md:text-6xl font-black tracking-tighter gradient-text mb-2">むしゃどん杯</h1>
             <p class="text-gray-400 font-bold tracking-widest">一夜限りのブキコスト制コミュニティ大会</p>
