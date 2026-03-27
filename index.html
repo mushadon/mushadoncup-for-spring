@@ -209,8 +209,49 @@
                 white-space: nowrap;
             }
         }
+        .floating-entry {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 50;
+}
+
+.floating-entry a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 18px;
+    border-radius: 9999px;
+    font-weight: 800;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(90deg, #818cf8, #f472b6);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.floating-entry a:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    .floating-entry {
+        right: 12px;
+        left: 12px;
+        bottom: 12px;
+    }
+
+    .floating-entry a {
+        width: 100%;
+    }
+}
     </style>
 </head>
+    <div class="floating-entry">
+    <a href="#entry">エントリーはこちら</a>
+</div>
 <body class="antialiased">
     <div class="bg-fixed"></div>
 
