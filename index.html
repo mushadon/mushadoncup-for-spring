@@ -17,10 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: #2a2a2a;
@@ -30,26 +27,80 @@
 
         .bg-fixed {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            min-height: 100svh;
+            top: 0; left: 0; width: 100vw; height: 100vh;
             background-image: url("田植え.jpg");
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-position: center; background-repeat: no-repeat; background-size: cover;
             z-index: -2;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
         }
 
+        /* --- ナビゲーション折りたたみロジック --- */
+        #nav-toggle { display: none; } /* チェックボックスを隠す */
+
+        .nav-label {
+            display: none; /* デフォルト(PC)では隠す */
+            cursor: pointer;
+            padding: 12px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            width: fit-content;
+            margin: 0 auto 20px;
+            font-weight: bold;
+            color: #fbcfe8;
+            transition: 0.3s;
+        }
+
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s;
+        }
+
+        .quick-nav a {
+            padding: 10px 14px;
+            border-radius: 9999px;
+            background: rgba(0,0,0,0.35);
+            color: #e5e7eb;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(6px);
+            font-size: 14px;
+            transition: .2s ease;
+        }
+
+        /* スマホ向け設定 */
+        @media (max-width: 768px) {
+            .nav-label { display: flex; align-items: center; gap: 8px; }
+            .quick-nav {
+                max-height: 0; /* 最初は閉じる */
+                opacity: 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* 2列で見やすく */
+                pointer-events: none;
+            }
+            /* チェックが入ったら展開 */
+            #nav-toggle:checked ~ .quick-nav {
+                max-height: 500px;
+                opacity: 1;
+                margin-bottom: 32px;
+                pointer-events: auto;
+            }
+            #nav-toggle:checked ~ .nav-label {
+                background: rgba(129, 140, 248, 0.4);
+                border-color: #818cf8;
+            }
+        }
+
+        /* --- 共通コンポーネント --- */
         .card {
             background: rgba(45, 45, 45, 0.9);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
         }
 
         .gradient-text {
@@ -61,19 +112,9 @@
         .header-bg {
             background: rgba(0, 0, 0, 0.38);
             backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
             border: 1px solid rgba(255,255,255,0.10);
             border-radius: 16px;
             padding: 24px;
-        }
-
-        .footer-bg {
-            background: rgba(0, 0, 0, 0.45);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 20px;
         }
 
         .section-kicker {
@@ -84,302 +125,109 @@
             text-transform: uppercase;
         }
 
-        .quick-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .quick-nav a {
-            padding: 10px 14px;
-            border-radius: 9999px;
-            background: rgba(0,0,0,0.35);
-            color: #e5e7eb;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.08);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            font-size: 14px;
-            transition: .2s ease;
-        }
-
-        .quick-nav a:hover,
-        .cta-primary:hover,
-        .cta-secondary:hover {
-            transform: translateY(-1px);
-            opacity: 0.95;
-        }
-
-        .cta-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 24px;
-        }
-
-        .cta-primary,
-        .cta-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            padding: 12px 20px;
-            border-radius: 9999px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: .2s ease;
-        }
-
         .cta-primary {
             background: linear-gradient(90deg, #818cf8, #f472b6);
             color: white;
             box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            padding: 12px 20px;
+            border-radius: 9999px;
+            font-weight: 700;
         }
 
-        .cta-secondary {
-            background: rgba(0, 0, 0, 0.35);
-            color: #f3f4f6;
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
+        .floating-entry {
+            position: fixed; right: 16px; bottom: 16px; z-index: 50;
+        }
+        .floating-entry a {
+            display: inline-flex; align-items: center; justify-content: center;
+            min-height: 52px; padding: 0 24px; border-radius: 9999px;
+            font-weight: 800; color: white;
+            background: linear-gradient(90deg, #818cf8, #f472b6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
         }
 
-        .feature-number {
+        @media (max-width: 768px) {
+            #top h1 { font-size: 2.4rem !important; }
+            .container { padding-bottom: 100px; }
+            .floating-entry { left: 16px; right: 16px; bottom: 12px; }
+            .floating-entry a { width: 100%; }
+        }
+                .cta-secondary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 52px;
-            height: 52px;
+            padding: 12px 20px;
             border-radius: 9999px;
+            font-weight: 700;
+            color: #f3f4f6;
+            background: rgba(0, 0, 0, 0.32);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(6px);
+        }
+
+        .cta-wrap {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .feature-number {
+            font-size: 2rem;
             font-weight: 900;
-            background: linear-gradient(135deg, rgba(129,140,248,.25), rgba(244,114,182,.25));
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #fbcfe8;
+            line-height: 1;
+            color: #a5b4fc;
         }
 
-        .summary-box,
-        .faq-item {
-            background: rgba(255,255,255,0.04);
+        .summary-box {
+            background: rgba(17, 24, 39, 0.45);
             border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(6px);
         }
 
         .faq-item {
+            background: rgba(17, 24, 39, 0.45);
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 14px;
-            padding: 14px 16px;
+            padding: 16px 18px;
         }
 
         .faq-item summary {
             cursor: pointer;
             font-weight: 700;
+            color: #f9fafb;
         }
 
         .faq-item p {
+            margin-top: 12px;
             color: #d1d5db;
-            margin-top: 10px;
             line-height: 1.8;
         }
 
-@media (max-width: 768px) {
-    body {
-        font-size: 15px;
-        line-height: 1.7;
-    }
+        .footer-bg {
+            background: rgba(0,0,0,0.32);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(6px);
+            border-radius: 16px;
+            padding: 20px;
+        }
+                @media (max-width: 768px) {
+            .cta-wrap {
+                flex-direction: column;
+                align-items: stretch;
+            }
 
-    .container {
-        padding-left: 14px !important;
-        padding-right: 14px !important;
-        padding-top: 20px !important;
-        padding-bottom: 96px !important; /* 固定ボタンぶん余白 */
-    }
-
-    .bg-fixed {
-        background-position: center top;
-    }
-
-    .header-bg,
-    .footer-bg,
-    .card {
-        border-radius: 14px;
-    }
-
-    .header-bg {
-        padding: 18px;
-    }
-
-    .footer-bg {
-        padding: 16px;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    /* ヒーロー */
-    #top h1 {
-        font-size: 2.4rem !important;
-        line-height: 1.1;
-        margin-bottom: 12px;
-    }
-
-    #top p.text-lg,
-    #top p.text-2xl,
-    #top p.md\:text-2xl {
-        font-size: 1rem !important;
-        line-height: 1.7;
-    }
-
-    /* セクション見出し */
-    h2.text-3xl,
-    h2.md\:text-4xl,
-    .text-3xl.font-bold {
-        font-size: 1.6rem !important;
-        line-height: 1.3;
-    }
-
-    h3.text-2xl,
-    h3.text-xl,
-    .text-2xl.font-bold,
-    .text-xl.font-bold {
-        font-size: 1.15rem !important;
-        line-height: 1.5;
-    }
-
-    .section-kicker {
-        font-size: 0.68rem;
-        letter-spacing: 0.18em;
-    }
-
-    /* ナビは2列グリッドに */
-    .quick-nav {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        overflow: visible;
-        justify-content: stretch;
-    }
-
-    .quick-nav a {
-        white-space: normal;
-        text-align: center;
-        padding: 10px 8px;
-        font-size: 13px;
-    }
-
-    /* ボタン */
-    .cta-wrap {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .cta-primary,
-    .cta-secondary {
-        width: 100%;
-        min-height: 46px;
-        padding: 12px 14px;
-        font-size: 0.95rem;
-    }
-
-    /* 既存グリッドを全部1カラム寄りに */
-    .grid,
-    .md\:grid-cols-2,
-    .md\:grid-cols-3,
-    .lg\:grid-cols-3 {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* 日時の大文字を抑える */
-    #schedule .text-4xl,
-    #schedule .text-5xl,
-    #schedule .md\:text-5xl {
-        font-size: 2rem !important;
-        line-height: 1.2;
-    }
-
-    #schedule .text-2xl {
-        font-size: 1.05rem !important;
-    }
-
-    /* 画像の圧迫感を軽減 */
-    #special-rules img {
-        border-radius: 12px;
-    }
-
-    /* 要約・FAQ */
-    .summary-box,
-    .faq-item {
-        padding: 14px;
-    }
-
-    .faq-item summary {
-        line-height: 1.6;
-    }
-
-    /* リストを少し読みやすく */
-    ul, ol {
-        padding-left: 0.2rem;
-    }
-
-    li {
-        line-height: 1.75;
-    }
-
-    /* 固定エントリーボタン */
-    .floating-entry {
-        right: 12px;
-        left: 12px;
-        bottom: 12px;
-    }
-
-    .floating-entry a {
-        width: 100%;
-        min-height: 50px;
-        font-size: 0.95rem;
-    }
-}
-        .floating-entry {
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    z-index: 50;
-}
-
-.floating-entry a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 52px;
-    padding: 0 18px;
-    border-radius: 9999px;
-    font-weight: 800;
-    text-decoration: none;
-    color: white;
-    background: linear-gradient(90deg, #818cf8, #f472b6);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.floating-entry a:hover {
-    transform: translateY(-1px);
-    opacity: 0.95;
-}
-
-@media (max-width: 768px) {
-    .floating-entry {
-        right: 12px;
-        left: 12px;
-        bottom: 12px;
-    }
-
-    .floating-entry a {
-        width: 100%;
-    }
-}
+            .cta-wrap a {
+                width: 100%;
+            }
+        }
     </style>
+    
 </head>
-    <div class="floating-entry">
-    <a href="#entry">エントリーはこちら</a>
-</div>
 <body class="antialiased">
+    <div class="floating-entry">
+        <a href="#entry">エントリーはこちら</a>
+    </div>
     <div class="bg-fixed"></div>
 
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
@@ -388,7 +236,8 @@
     </div>
 
     <div class="container mx-auto px-4 py-12 relative z-10 max-w-6xl">
-
+        <input type="checkbox" id="nav-toggle">
+        <label for="nav-toggle" class="nav-label">メニューを開く</label>
         <nav class="quick-nav mb-8">
             <a href="#top">トップ</a>
             <a href="#schedule">日時</a>
@@ -428,7 +277,8 @@
                         <div class="bg-indigo-900/30 p-4 rounded-lg text-indigo-300">21:00 試合開始</div>
                     </div>
                     <p class="mt-5 text-gray-300 leading-7">
-                        個人エントリー形式なので、チームを組まずに参加できます。
+                        個人エントリー形式なので、気軽に参加できます。
+                        チーム分けは前日にメンバーを確定し、当日の昼頃発表します
                     </p>
                 </div>
             </section>
@@ -452,7 +302,7 @@
                         <div class="feature-number mb-4">02</div>
                         <h3 class="text-2xl font-bold mb-3">負け側に逆転チャンス</h3>
                         <p class="text-gray-300 leading-8">
-                            第2試合では敗北チームのみコスト22が解禁され、逆転の余地があります。
+                            2本先取の大会です、一試合目負けてもハンデがつき、逆転の余地があります。
                         </p>
                     </div>
 
@@ -582,17 +432,17 @@
 
                     <details class="faq-item">
                         <summary>ブキ全部もって無くても大丈夫ですか</summary>
-                        <p>大丈夫！自分の持ってるブキが少なくても安心</p>
+                        <p>参加できます、すべてのブキを所持していなくても問題ありません</p>
                     </details>
 
                     <details class="faq-item">
-                        <summary>チーム分けはいつ発表されますか</summary>
-                        <p>前日にメンバー確定させて当日発表します</p>
+                        <summary>準備するべき事は？</summary>
+                       <p>スマホにNintendo Switchアプリをダウンロードしておいてください！</p>
                     </details>
 
                     <details class="faq-item">
                         <summary>強くないんだけど大丈夫かな？</summary>
-                        <p>パワーを平均化するので味方が強くなります！キャリーしてもらえる！</p>
+                    <p>もちろん、大丈夫！パワー差が偏りすぎないよう運営側でチームを編成します！</p>
                     </details>
                 </div>
             </section>
