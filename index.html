@@ -23,28 +23,16 @@
             background-color: #2a2a2a;
             color: #f0f0f0;
             overflow-x: hidden;
-            position: relative;
-    min-height: 100vh;
         }
 
-     .bg-fixed {
-    position: fixed;
-    inset: 0;
-    background-image: url("田植え.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -2;
-}
+        .bg-fixed {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("田植え.jpg");
+            background-position: center; background-repeat: no-repeat; background-size: cover;
+            z-index: -2;
+        }
 
-@media (max-width: 768px) {
-    .bg-fixed {
-        position: absolute;
-        inset: 0;
-        min-height: 100%;
-        background-position: center top;
-    }
-}
         /* --- ナビゲーション折りたたみロジック --- */
         #nav-toggle { display: none; } /* チェックボックスを隠す */
 
@@ -233,12 +221,8 @@
                 width: 100%;
             }
         }
-    @media (max-width: 768px) {
-    .mobile-hide-bg {
-        display: none;
-    }
-}
     </style>
+    
 </head>
 <body class="antialiased">
     <div class="floating-entry">
@@ -246,7 +230,7 @@
     </div>
     <div class="bg-fixed"></div>
 
-    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 mobile-hide-bg">
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
         <div class="absolute top-[-20%] left-[-10%] w-96 h-96 bg-indigo-600 rounded-full opacity-30 filter blur-3xl animate-pulse"></div>
         <div class="absolute bottom-[-20%] right-[-10%] w-96 h-96 bg-pink-600 rounded-full opacity-30 filter blur-3xl animate-pulse"></div>
     </div>
