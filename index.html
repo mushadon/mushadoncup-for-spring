@@ -120,7 +120,6 @@
             font-size: 0.9rem;
             font-weight: 700;
             color: #fbcfe8;
-            /* タップしやすいサイズ確保 */
             min-height: 44px;
         }
 
@@ -360,6 +359,7 @@
         .text-green  { color: #4ade80; }
         .text-indigo { color: #a5b4fc; }
         .text-pink   { color: #f9a8d4; }
+        .text-yellow { color: #fbbf24; }
 
         /* ===== 細則 ===== */
         .rule-block { margin-bottom: 18px; }
@@ -379,6 +379,36 @@
             content: '▸';
             position: absolute; left: 0;
             color: #818cf8;
+        }
+
+        /* ===== 写真賞バナー ===== */
+        .photo-award-banner {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: linear-gradient(135deg, rgba(251,191,36,0.12), rgba(244,114,182,0.10));
+            border: 1px solid rgba(251,191,36,0.35);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .photo-award-icon {
+            font-size: 2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .photo-award-body h3 {
+            font-size: 0.95rem;
+            color: #fbbf24;
+            margin-bottom: 6px;
+        }
+
+        .photo-award-body p {
+            font-size: 0.85rem;
+            color: var(--c-muted);
+            line-height: 1.7;
         }
 
         /* ===== FAQ ===== */
@@ -526,13 +556,11 @@
 
             body { font-size: 16px; }
 
-            /* コンテナを広げてサイドバー的な余白を活かす */
             .container {
                 max-width: 1000px;
                 padding: 40px 40px 120px;
             }
 
-            /* ナビをPC では常時横並び表示 */
             .nav-label { display: none !important; }
             .quick-nav {
                 display: flex !important;
@@ -551,60 +579,47 @@
                 min-height: 40px;
             }
 
-            /* ヘッダー */
-            .header-wrap {
-                padding: 48px 40px;
-            }
+            .header-wrap { padding: 48px 40px; }
             .header-wrap h1 { font-size: 5rem; }
             .header-sub { font-size: 1.2rem; }
             .header-desc { font-size: 1rem; }
             .cta-wrap { gap: 14px; }
             .btn { font-size: 1rem; padding: 14px 28px; }
 
-            /* カード余白 */
             .card-pad { padding: 36px 40px; }
 
-            /* スケジュール */
             .schedule-date { font-size: 2.8rem; }
             .schedule-item { font-size: 1.1rem; padding: 20px; }
 
-            /* 特徴グリッド: 4列 */
             .features-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
             .feature-num { font-size: 2rem; }
             .feature-card h3 { font-size: 1rem; }
             .feature-card p  { font-size: 0.88rem; }
 
-            /* サマリー */
             .summary-row { gap: 16px; }
             .summary-card { padding: 20px 16px; }
             .summary-card h3 { font-size: 1rem; }
             .summary-card p  { font-size: 0.95rem; }
 
-            /* コストルール */
             .cost-block { padding: 24px; }
             .cost-item { font-size: 1rem; }
             .flow-item { font-size: 0.95rem; padding: 14px 0; }
 
-            /* 細則 */
             .rule-block h3 { font-size: 1.1rem; }
             .rule-block li { font-size: 0.95rem; }
 
-            /* FAQ */
             .faq-item summary { font-size: 1rem; padding: 18px 20px; }
             .faq-body { font-size: 0.95rem; padding: 16px 20px 18px; }
 
-            /* スタッフ */
             .staff-card { padding: 20px; }
             .staff-card h3 { font-size: 1rem; margin-bottom: 10px; }
             .staff-card p, .staff-card li { font-size: 0.92rem; }
 
-            /* エントリー */
             .step-card { padding: 20px; gap: 16px; }
             .step-num { width: 40px; height: 40px; min-width: 40px; font-size: 0.9rem; }
             .step-content h3 { font-size: 1.05rem; }
             .step-content p  { font-size: 0.92rem; }
 
-            /* フローティングCTAをPC向けに右下小さめに */
             .floating-cta {
                 left: auto;
                 right: 32px;
@@ -618,8 +633,12 @@
                 height: 52px;
             }
 
-            /* h2 */
             h2 { font-size: 1.8rem; }
+
+            .photo-award-banner { padding: 20px; gap: 18px; }
+            .photo-award-icon { font-size: 2.4rem; }
+            .photo-award-body h3 { font-size: 1rem; }
+            .photo-award-body p { font-size: 0.92rem; }
         }
     </style>
 </head>
@@ -774,6 +793,16 @@
                     <div><strong>第3試合：</strong> 1勝1敗の場合、両チームコスト22で決戦</div>
                 </div>
             </div>
+
+            <div class="cost-block" style="margin-top:14px; margin-bottom:0;">
+                <h3 class="text-yellow">⚠ ブキ再使用制限</h3>
+                <div class="cost-item" style="margin-bottom:0;">
+                    <div>同一マッチ内で、同じプレイヤーが<strong>同系統のブキを重複して使用することは禁止</strong>です。<br>
+                    <span class="text-pink" style="font-size:0.85em;">例：スシ → スシコラ・スシ煌 はすべて同系統</span><br>
+                    <span style="font-size:0.85em;">判断に迷う場合は大会前にスタッフへ確認してください。違反時は設定ミスのルールに準じます。</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ===== 大会細則 ===== -->
@@ -825,6 +854,20 @@
                     <li><strong>申告方法：</strong>スタッフルームのVCにて報告してください。</li>
                 </ul>
             </div>
+
+            <!-- 写真賞バナー -->
+            <div class="photo-award-banner">
+                <div class="photo-award-icon">📸</div>
+                <div class="photo-award-body">
+                    <h3>🏆 写真賞</h3>
+                    <p>
+                        大会中にチームメンバーで撮影した<strong>記念写真を投稿してくれたチーム</strong>の中から、
+                        運営が1チームを<span class="text-yellow">「写真賞」</span>として選出します。<br>
+                        選ばれたチームには<strong>イラストを贈呈</strong>します！<br>
+                        <span style="font-size:0.82rem; margin-top:4px; display:block;">Discordサーバー内の <strong>#むしゃどん杯記念写真</strong> チャンネルに写真を投稿してください。</span>
+                    </p>
+                </div>
+            </div>
         </section>
 
         <!-- ===== FAQ ===== -->
@@ -850,6 +893,20 @@
             <details class="faq-item">
                 <summary>強くないけど大丈夫？</summary>
                 <div class="faq-body">もちろん大丈夫！パワー差が偏りすぎないよう運営側でチームを編成します！</div>
+            </details>
+
+            <details class="faq-item">
+                <summary>「同系統のブキ」とは具体的にどの範囲ですか？</summary>
+                <div class="faq-body">
+                    武器名の共通部分（ベース名）が同じものが同系統です。例として、スプラシューター・スプラシューターコラボ・スプラシューター煌はすべて同系統です。判断に迷う場合は試合前にスタッフへ確認してください。
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>写真賞はどうやって応募するの？</summary>
+                <div class="faq-body">
+                    チームメンバーで撮った記念写真を、Discordサーバー内の <strong>#むしゃどん杯記念写真</strong> チャンネルに投稿するだけです！複数枚投稿してもOK。選考は運営が行い、結果は大会後に発表します。
+                </div>
             </details>
         </section>
 
